@@ -18,9 +18,13 @@ body {
    }
    &__logo {
       background-color: #f73744;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
       padding: 20px 50px;
       &-icon {
          display: inline-block;
+         margin-right: 5px;
          width: 15px;
          height: 15px;
       }
