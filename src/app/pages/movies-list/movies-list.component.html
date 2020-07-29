@@ -1,7 +1,7 @@
 <header class="header">
    <div class="header-wrap">
       <div class="header__logo">
-         Media App
+         <span class="header__logo-icon"></span> Media App
       </div>
       <div class="header__bar">
          <input type="search" class="header__input" placeholder="search">
@@ -18,3 +18,16 @@
       </div>
    </div>
 </div>
+
+<ul>
+   <li *ngFor="let item of list; let i = index;">
+      <!-- <div *ngFor="let title of item.results"></div> -->
+      {{item.title}} {{ item.release_date}}
+   </li>
+</ul>
+
+<!-- <ul>
+   <li *ngFor="let movie of list; let index = index;">
+      {{ movie.results[index].title }}
+   </li>
+</ul> -->

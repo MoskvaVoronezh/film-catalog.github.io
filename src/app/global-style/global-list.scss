@@ -7,3 +7,22 @@ body {
    font-family: 'Open Sans',
    sans-serif;
 }
+
+.header {
+   // padding: 20px 30px;
+   background-color: #fe4250;
+   color: #fff;
+   &-wrap {
+      display: flex;
+      align-items: center;
+   }
+   &__logo {
+      background-color: #f73744;
+      padding: 20px 50px;
+      &-icon {
+         display: inline-block;
+         width: 15px;
+         height: 15px;
+      }
+   }
+}
