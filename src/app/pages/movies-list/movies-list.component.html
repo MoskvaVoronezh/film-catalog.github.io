@@ -11,14 +11,14 @@
 <div class="content">
    <h2 class="content__title">New Releases</h2>
    <div class="movies">
-      <div class="movies__item">
+      <div class="movies__item" *ngFor="let movie of movies">
          <div class="movies__poster">
-            <img src="#" class="movies__poster-img">
-            <span class="movies__rait">7.5</span>
+            <img src="{{ getFullImage(movie.poster_path) }}" class="movies__poster-img">
+            <span class="movies__rait">{{ movie.vote_average }}</span>
          </div>
          <div class="movies__block">
-            <div class="movies__block-name"></div>
-            <div class="movies__block-dateCreate"></div>
+            <div class="movies__block-name">{{movie.title}}</div>
+            <div class="movies__block-dateCreate">{{ movie.release_date }}</div>
          </div>
          <div class="movies__genres">
             <div class="movies__genres-item"></div>

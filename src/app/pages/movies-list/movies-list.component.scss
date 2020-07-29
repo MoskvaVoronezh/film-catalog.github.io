@@ -1,0 +1,51 @@
+.movies {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   &__item {
+      margin-right: 30px;
+      &:last-child {
+         margin-right: 0;
+      }
+   }
+   &__poster {
+      position: relative;
+      &-img {
+         max-width: 300px;
+      }
+   }
+   &__rait {
+      position: absolute;
+      background-color: #feb10d;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 25px;
+      border-radius: 30px;
+      top: -20px;
+      left: 50%;
+      margin-left: -36px;
+      
+   }
+   &__descr {
+      max-width: 300px;
+   }
+
+   &__block {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      &-name {
+         color: #fff;
+         font-weight: bold;
+         font-size: 20px;
+         max-width: 200px;
+      }
+      &-dateCreate {
+         color: #fff;
+         font-size: 16px;
+         font-weight: 300;
+      }
+   }
+}

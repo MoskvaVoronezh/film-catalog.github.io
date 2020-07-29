@@ -12,15 +12,16 @@ export class MoviesListComponent implements OnInit {
     private movieService: MovieService
   ) { }
   public apiUrl: string = environment.apiUrl;
-  list: any = [];
+  movies: any = [];
 
   ngOnInit(): void {
     this.movieService.getMovie().subscribe(movies => { 
-      this.list = movies.results;
+      this.movies = movies.results;
+      console.log(this.movies);
     } );
   }
 
   getFullImage(img) {
-    return `${this.apiUrl}${img}`; 
+    return `https://image.tmdb.org/t/p/w500/${img}`; 
   }
 }
