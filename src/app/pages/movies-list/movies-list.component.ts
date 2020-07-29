@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
-
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
@@ -11,6 +11,7 @@ export class MoviesListComponent implements OnInit {
   constructor(
     private movieService: MovieService
   ) { }
+  public apiUrl: string = environment.apiUrl;
   list: any = [];
 
   ngOnInit(): void {
@@ -19,4 +20,7 @@ export class MoviesListComponent implements OnInit {
     } );
   }
 
+  getFullImage(img) {
+    return `${this.apiUrl}${img}`; 
+  }
 }

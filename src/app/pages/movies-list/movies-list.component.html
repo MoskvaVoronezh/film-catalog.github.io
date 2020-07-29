@@ -4,7 +4,7 @@
          <img src="../../../assets/image/wifi.svg"  class="header__logo-icon"> Media App
       </div>
       <div class="header__bar">
-         <input type="search" class="header__input" placeholder="search">
+         <img class="header__bar-icon" src="../../../assets/image/icons8-search.svg" > <input type="search" class="header__input" placeholder="search">
       </div>
    </div>
 </header>
@@ -14,20 +14,17 @@
       <div class="movies__item">
          <div class="movies__poster">
             <img src="#" class="movies__poster-img">
+            <span class="movies__rait">7.5</span>
          </div>
+         <div class="movies__block">
+            <div class="movies__block-name"></div>
+            <div class="movies__block-dateCreate"></div>
+         </div>
+         <div class="movies__genres">
+            <div class="movies__genres-item"></div>
+         </div>
+         <div class="movies__descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam nulla vel nisi, magni reprehenderit perspiciatis exercitationem amet ea, libero aliquid odit iure ipsam provident pariatur porro hic qui facere minima?</div>
       </div>
    </div>
 </div>
 
-<ul>
-   <li *ngFor="let item of list; let i = index;">
-      <!-- <div *ngFor="let title of item.results"></div> -->
-      {{item.title}} {{ item.release_date}}
-   </li>
-</ul>
-
-<!-- <ul>
-   <li *ngFor="let movie of list; let index = index;">
-      {{ movie.results[index].title }}
-   </li>
-</ul> -->

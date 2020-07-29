@@ -9,7 +9,6 @@ body {
 }
 
 .header {
-   // padding: 20px 30px;
    background-color: #fe4250;
    color: #fff;
    &-wrap {
@@ -28,5 +27,38 @@ body {
          width: 15px;
          height: 15px;
       }
+   }
+   &__bar {
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      &-icon {
+         display: inline-block;
+         margin-right: 5px;
+         width: 15px;
+         height: 15px;
+      }
+   }
+   &__input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      display: 14px;
+      &::placeholder {
+         color: #fff;
+         font-weight: light;
+      }
+   }
+}
+
+.content {
+   background-color: #222b32;
+   padding: 20px;
+   &__title {
+      margin: 50px 0;
+      font-size: 30px;
+      color: #fff;
+      font-weight: bold;
    }
 }
