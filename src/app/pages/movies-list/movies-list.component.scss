@@ -8,6 +8,10 @@
       &:last-child {
          margin-right: 0;
       }
+      &:hover {
+         transform: scale(1.07);
+         transition: 0.3s linear;
+      }
    }
    &__poster {
       position: relative;

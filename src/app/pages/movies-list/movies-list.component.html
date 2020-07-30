@@ -4,14 +4,15 @@
          <img src="../../../assets/image/wifi.svg"  class="header__logo-icon"> Media App
       </div>
       <div class="header__bar">
-         <img class="header__bar-icon" src="../../../assets/image/icons8-search.svg" > <input type="search" class="header__input" placeholder="search">
+         <img class="header__bar-icon" src="../../../assets/image/icons8-search.svg" > 
+         <input type="search" class="header__input" placeholder="search">
       </div>
    </div>
 </header>
 <div class="content">
    <h2 class="content__title">New Releases</h2>
    <div class="movies">
-      <div class="movies__item" *ngFor="let movie of movies">
+      <div class="movies__item" *ngFor="let movie of movies" (click)="goToMovieDetails(movie.id)">
          <div class="movies__poster">
             <img src="{{ getFullImage(movie.poster_path) }}" class="movies__poster-img">
             <span class="movies__rait">{{ movie.vote_average }}</span>
@@ -21,7 +22,7 @@
             <div class="movies__block-dateCreate">{{ movie.release_date }}</div>
          </div>
          <div class="movies__genres">
-            <div class="movies__genres-item"> {{movie.genre_ids}} </div>
+            <div class="movies__genres-item"> {{movie.genre_ids}}</div>
          </div>
          <div class="movies__descr">
             {{ movie.overview }}</div>

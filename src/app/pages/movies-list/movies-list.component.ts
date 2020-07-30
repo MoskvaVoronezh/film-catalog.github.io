@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { environment } from 'src/environments/environment.prod';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
@@ -9,12 +10,13 @@ import { environment } from 'src/environments/environment.prod';
 export class MoviesListComponent implements OnInit {
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router
   ) { }
   public apiUrl: string = environment.apiUrl;
   movies: any = [];
 
-  genres: [
+  genres = [
     {
       id: 28,
       name: "Action"
@@ -104,17 +106,14 @@ export class MoviesListComponent implements OnInit {
     return `https://image.tmdb.org/t/p/w500/${img}`; 
   }
 
-  // renderGenres(array) {
-  //   console.log(array);
-  //   let result = [];
-  //   // for(let i = 0; i < this.genres.length; i++) {
-  //   //   for(let j = 0; j < array.lenght; j++) {
-  //   //     this.genres[i].id == array[j];
-  //   //     console.log(this.genres[i].id == array[j]);
-  //   //     console.log(true);
-  //   //     result.push(this.genres[i].name);
-  //   //   }
-  //   // }
-  //   console.log(result);
-  // }
+  search(event) {
+    // event.preventDefautl();
+    console.log(event);
+  }
+
+
+  goToMovieDetails(id: number) {
+    this.router.navigateByUrl(`/movie-details/${id}`);
+  }
+  
 }
