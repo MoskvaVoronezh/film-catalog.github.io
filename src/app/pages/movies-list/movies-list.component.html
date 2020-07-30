@@ -21,9 +21,10 @@
             <div class="movies__block-dateCreate">{{ movie.release_date }}</div>
          </div>
          <div class="movies__genres">
-            <div class="movies__genres-item"></div>
+            <div class="movies__genres-item"> {{movie.genre_ids}} </div>
          </div>
-         <div class="movies__descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam nulla vel nisi, magni reprehenderit perspiciatis exercitationem amet ea, libero aliquid odit iure ipsam provident pariatur porro hic qui facere minima?</div>
+         <div class="movies__descr">
+            {{ movie.overview }}</div>
       </div>
    </div>
 </div>

@@ -4,6 +4,7 @@
    flex-wrap: wrap;
    &__item {
       margin-right: 30px;
+      margin-bottom: 30px;
       &:last-child {
          margin-right: 0;
       }
@@ -28,6 +29,8 @@
    }
    &__descr {
       max-width: 300px;
+      color: #ddd;
+      font-weight: 300;
    }
 
    &__block {
