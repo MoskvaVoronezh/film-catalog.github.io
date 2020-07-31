@@ -1,22 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
+  public apiUrl: string = environment.apiUrl;
+  public apiKey: string = environment.apiKey;
+
   constructor(
     private http: HttpClient
   ) { }
     
   getMovies(): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/discover/movie?api_key=ae2577fe39de40d905bc0b37e1523a8b&language=en-us&with_genres=`);
+    return this.http.get(`${this.apiUrl}discover/movie?api_key=${this.apiKey}&language=en-us&with_genres=`);
   }
 
   getMovie(id: number): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=ae2577fe39de40d905bc0b37e1523a8b&language=en-US`)
+    return this.http.get(`${this.apiUrl}movie/${id}?api_key=${this.apiKey}&language=en-US`);
+  }
+
+  getMoviesRecommendations(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}movie/${id}/recommendations?api_key=${this.apiKey}&language=en-US&page=1`);
+  }
+
+  getMoviesSimular(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}movie/${id}/similar?api_key=${this.apiKey}&language=en-US&page=1`)
   }
   
 }
