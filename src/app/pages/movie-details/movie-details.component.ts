@@ -20,6 +20,9 @@ export class MovieDetailsComponent implements OnInit {
   public movieInfo: any;
   public movieRecommendations: any;
   public movieSimulars: any;
+  public imageUrl: string;
+  public genres: string = '';
+  public countries: string = '';
 
   ngOnInit(): void {
     this.movieId = +this.route.snapshot.paramMap.get('id');
@@ -27,7 +30,20 @@ export class MovieDetailsComponent implements OnInit {
     //получение информации о фильме
     this.movieService.getMovie(this.movieId).subscribe(data => {
       this.movieInfo = data;
+      this.imageUrl = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
       console.log(this.movieInfo);
+      
+      data.genres.forEach(n => {
+        this.genres += n.name + ', ';
+      });
+      this.genres = this.genres.substring(0, this.genres.length - 2);
+
+      data.production_countries.forEach(n => {
+        this.countries += n.name + ', ';
+      });
+
+      this.countries = this.countries.substring(0, this.countries.length - 2);
+      
     });
 
     //получение рекомендации

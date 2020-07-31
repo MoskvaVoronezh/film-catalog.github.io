@@ -1,5 +1,60 @@
 .header {
    &-movie-details {
-      padding: 20px 50px;
+      padding: 20px 30px;
+   }
+}
+
+.movie {
+   &-details {
+      padding: 20px 30px;
+      background-color:#222b32;
+      height: 100%;
+   }
+   &__title {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      padding-top: 30px;
+      margin-bottom: 30px;
+   }
+   &-wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      background-color: #1D2226;
+      margin: 0 auto;
+      &__description {
+         width: 100%;
+         padding: 30px 0;
+         color: #fff;
+      }
+   }
+   &__poster {
+      margin-right: 30px;
+      &-img {
+      }
+   }
+   &-info {
+      &__item {
+         display: flex;
+         align-items: center;
+         padding: 20px 10px;
+         padding-left: 0;
+         border-bottom: 1px solid #7E8D99;
+         &:last-child {
+            border: none;
+         }
+      }
+      &__left {
+         margin-right: 40px;
+         text-transform: uppercase;
+         color: #feb10d;
+         font-weight: bold;
+         min-width: 120px;
+      }
+      &__right {
+         color: #7E8D99;
+      }
    }
 }
