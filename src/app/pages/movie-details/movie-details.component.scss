@@ -83,3 +83,14 @@
       }
    }
 }
+
+.button {
+   &-favourites {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      &__icon {
+         width: 20px;
+      }
+   }
+}

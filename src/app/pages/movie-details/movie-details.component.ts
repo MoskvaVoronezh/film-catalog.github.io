@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { Location } from '@angular/common';
@@ -9,7 +9,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.scss']
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -51,6 +51,9 @@ export class MovieDetailsComponent implements OnInit {
   public imageUrl: string;
   public genres: string = '';
   public countries: string = '';
+  public isFavorite: boolean = false;
+
+  public movie: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,14 +64,20 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(params => {
+    this.movie = this.route.params.subscribe(params => {
       this.movieId = params['id'];
-      
+      let ids = JSON.parse(localStorage.getItem('likes'));
+      if(ids !== null) {
+        ids.forEach(n => {
+          if(this.movieId == n) {
+            this.isFavorite = true;
+          }
+        })
+      }
       //получение информации о фильме
       this.movieService.getMovie(this.movieId).subscribe(data => {
         this.movieInfo = data;
         this.imageUrl = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
-        console.log(this.movieInfo);
 
         data.genres.forEach(n => {
           this.genres += n.name + ', ';
@@ -86,19 +95,14 @@ export class MovieDetailsComponent implements OnInit {
       //получение рекомендации
       this.movieService.getMoviesRecommendations(this.movieId).subscribe(recommendations => {
         this.movieRecommendations = recommendations.results;
-        console.log(this.movieRecommendations);
       });
 
       //получение похожих фильмов
       this.movieService.getMoviesSimular(this.movieId).subscribe(simulars => {
         this.movieSimulars = simulars.results;
-        console.log(this.movieSimulars);
       })
     });
 
-    
-
-    
   }
   
   public back() {
@@ -111,6 +115,23 @@ export class MovieDetailsComponent implements OnInit {
 
   goToMovieDetails(id: number) {
     this.router.navigate([`/movie-details/`, id]);
+  }
+
+  saveFavority(id) {
+    this.isFavorite = true;
+    let likes = JSON.parse(localStorage.getItem('likes'));
+
+    if(likes === null) {
+      localStorage.setItem('likes', JSON.stringify([id]));
+    } else {
+      likes.push(id);
+      localStorage.setItem('likes', JSON.stringify(likes));
+    }
+
+  }
+
+  ngOnDestroy() {
+    this.movie.unsubscribe();
   }
 
 }

@@ -41,6 +41,15 @@
            <div class="movie-info__left">Duration</div>
            <div class="movie-info__right">{{movieInfo.runtime}} min</div>
          </div>
+         <div class="movie-info__item">
+           <div class="movie-info__left">
+              <button class="button-favourites" (click)="saveFavority(movieInfo.id)">
+                 <img class="button-favourites__icon" src="../../../assets/image/star.svg" *ngIf="!isFavorite">
+                 <img class="button-favourites__icon" src="../../../assets/image/star-yellow.svg" *ngIf="isFavorite">
+              </button>
+           </div>
+           
+         </div>
         
          
       </div>
