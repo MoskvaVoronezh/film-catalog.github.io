@@ -98,8 +98,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.movieService.getMovies().subscribe(movies => { 
       this.movies = movies.results;
-      console.log(this.movies);
-    } );
+    });
   }
 
   ngOnDestroy():void {}
@@ -126,6 +125,22 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     return listGenres;
   }
 
+  getFavorite(id) {
+    // console.log(id);
+    let favorite = JSON.parse(localStorage.getItem('likes'));
+    console.log(favorite);
+
+    if(favorite.includes(id)) {
+      return true;
+    };
+    // favorite.forEach(movieId => {
+    //   if(movieId == id) {
+    //     return 'added to favorites';
+    //   } else {
+    //     return '';
+    //   }
+    // })
+  }
 
   goToMovieDetails(id: number) {
     this.router.navigate(['/movie-details', id]);

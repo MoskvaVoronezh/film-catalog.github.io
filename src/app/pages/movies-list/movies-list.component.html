@@ -25,6 +25,9 @@
          <div class="movies__genres">
             <div class="movies__genres-item">{{getCategoryNames(movie.genre_ids)}}</div>
          </div>
+         <div class="movies__favorite">
+            {{ getFavorite(movie.id) ? 'In Favorite' : null  }}
+         </div>
          <div class="movies__descr">
             {{ movie.overview }}
          </div>
