@@ -11,8 +11,12 @@ export class MovieService {
     private http: HttpClient
   ) { }
     
-  getMovie(): Observable<any> {
+  getMovies(): Observable<any> {
     return this.http.get(`https://api.themoviedb.org/3/discover/movie?api_key=ae2577fe39de40d905bc0b37e1523a8b&language=en-us&with_genres=`);
+  }
+
+  getMovie(id: number): Observable<any> {
+    return this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=ae2577fe39de40d905bc0b37e1523a8b&language=en-US`)
   }
   
 }

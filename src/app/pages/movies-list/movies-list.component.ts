@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { environment } from 'src/environments/environment.prod';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss']
 })
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent implements OnInit, OnDestroy {
 
   constructor(
     private movieService: MovieService,
@@ -96,11 +96,13 @@ export class MoviesListComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.movieService.getMovie().subscribe(movies => { 
+    this.movieService.getMovies().subscribe(movies => { 
       this.movies = movies.results;
       console.log(this.movies);
     } );
   }
+
+  ngOnDestroy():void {}
 
   getFullImage(img) {
     return `https://image.tmdb.org/t/p/w500/${img}`; 
@@ -109,6 +111,19 @@ export class MoviesListComponent implements OnInit {
   search(event) {
     // event.preventDefautl();
     console.log(event);
+  }
+
+  public number: number = 1;
+
+  getCategoryNames(ids: []) {
+    let listGenres: string = '';
+    this.genres.forEach(m => {
+      ids.forEach(n => {
+        if (n == m.id) listGenres += m.name + ', ';
+      })
+    });
+    listGenres = listGenres.substring(0, listGenres.length - 2);
+    return listGenres;
   }
 
 
