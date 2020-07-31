@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { Location } from '@angular/common';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -55,42 +55,50 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.movieId = +this.route.snapshot.paramMap.get('id');
 
-    //получение информации о фильме
-    this.movieService.getMovie(this.movieId).subscribe(data => {
-      this.movieInfo = data;
-      this.imageUrl = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
-      console.log(this.movieInfo);
+    this.route.params.subscribe(params => {
+      this.movieId = params['id'];
       
-      data.genres.forEach(n => {
-        this.genres += n.name + ', ';
-      });
-      this.genres = this.genres.substring(0, this.genres.length - 2);
+      //получение информации о фильме
+      this.movieService.getMovie(this.movieId).subscribe(data => {
+        this.movieInfo = data;
+        this.imageUrl = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+        console.log(this.movieInfo);
 
-      data.production_countries.forEach(n => {
-        this.countries += n.name + ', ';
+        data.genres.forEach(n => {
+          this.genres += n.name + ', ';
+        });
+        this.genres = this.genres.substring(0, this.genres.length - 2);
+
+        data.production_countries.forEach(n => {
+          this.countries += n.name + ', ';
+        });
+
+        this.countries = this.countries.substring(0, this.countries.length - 2);
+
       });
 
-      this.countries = this.countries.substring(0, this.countries.length - 2);
-      
+      //получение рекомендации
+      this.movieService.getMoviesRecommendations(this.movieId).subscribe(recommendations => {
+        this.movieRecommendations = recommendations.results;
+        console.log(this.movieRecommendations);
+      });
+
+      //получение похожих фильмов
+      this.movieService.getMoviesSimular(this.movieId).subscribe(simulars => {
+        this.movieSimulars = simulars.results;
+        console.log(this.movieSimulars);
+      })
     });
 
-    //получение рекомендации
-    this.movieService.getMoviesRecommendations(this.movieId).subscribe(recommendations => {
-      this.movieRecommendations = recommendations.results;
-      console.log(this.movieRecommendations);
-    });
+    
 
-    //получение похожих фильмов
-    this.movieService.getMoviesSimular(this.movieId).subscribe(simulars => {
-      this.movieSimulars = simulars.results;
-      console.log(this.movieSimulars);
-    })
+    
   }
   
   public back() {
@@ -99,6 +107,10 @@ export class MovieDetailsComponent implements OnInit {
 
   getFullImage(img) {
     return `https://image.tmdb.org/t/p/w500/${img.poster_path}`;
+  }
+
+  goToMovieDetails(id: number) {
+    this.router.navigate([`/movie-details/`, id]);
   }
 
 }

@@ -128,7 +128,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
 
   goToMovieDetails(id: number) {
-    this.router.navigateByUrl(`/movie-details/${id}`);
+    this.router.navigate(['/movie-details', id]);
   }
   
 }
