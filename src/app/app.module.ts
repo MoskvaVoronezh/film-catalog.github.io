@@ -8,12 +8,14 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './pages/movies-list/movies-list.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { MoviesFavoriteComponent } from './pages/movies-favorite/movies-favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    MoviesFavoriteComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { MoviesListComponent } from './pages/movies-list/movies-list.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { MoviesFavoriteComponent } from './pages/movies-favorite/movies-favorite.component';
 
 const routes: Routes = [
    { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -13,10 +14,10 @@ const routes: Routes = [
       path: 'movie-details/:id',
       component: MovieDetailsComponent
    },
-   // {
-   //    path: '**',
-   //    redirectTo: 'list'
-   // }
+   {
+      path: 'favorites',
+      component: MoviesFavoriteComponent
+   }
 ];
 
 @NgModule({

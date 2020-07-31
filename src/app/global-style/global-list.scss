@@ -59,6 +59,10 @@ body {
          height: 30px;
       }
    }
+   &__link {
+      cursor: pointer;
+      text-decoration: underline;
+   }
 }
 
 .content {

@@ -117,6 +117,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/movie-details/`, id]);
   }
 
+  goToFavorite() {
+    this.router.navigate(['/favorites'])
+  }
+
   saveFavority(id) {
     this.isFavorite = true;
     let likes = JSON.parse(localStorage.getItem('likes'));
