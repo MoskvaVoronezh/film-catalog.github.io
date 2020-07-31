@@ -30,5 +30,9 @@ export class MovieService {
   getMoviesSimular(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}movie/${id}/similar?api_key=${this.apiKey}&language=en-US&page=1`)
   }
+
+  search(value): Observable<any> {
+    return this.http.get(`${this.apiUrl}search/movie?api_key=${this.apiKey}&language=en-US&query=${value}&page=1&include_adult=false`);
+  }
   
 }

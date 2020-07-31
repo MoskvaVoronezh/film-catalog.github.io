@@ -9,13 +9,15 @@ import { Router } from '@angular/router';
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
 
+  public apiUrl: string = environment.apiUrl;
+  movies: any = [];
+  public number: number = 1;
+
   constructor(
     private movieService: MovieService,
     private router: Router
   ) { }
-  public apiUrl: string = environment.apiUrl;
-  movies: any = [];
-
+  
   genres = [
     {
       id: 28,
@@ -107,14 +109,14 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     return `https://image.tmdb.org/t/p/w500/${img}`; 
   }
 
-  search(event) {
-    // event.preventDefautl();
-    console.log(event);
+  search(value) {
+    this.movieService.search(value).subscribe(movie => {
+      this.movies = movie.results;
+    });
   }
 
-  public number: number = 1;
-
   getCategoryNames(ids: []) {
+
     let listGenres: string = '';
     this.genres.forEach(m => {
       ids.forEach(n => {
@@ -126,20 +128,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   getFavorite(id) {
-    // console.log(id);
-    let favorite = JSON.parse(localStorage.getItem('likes'));
-    console.log(favorite);
 
+    let favorite = JSON.parse(localStorage.getItem('likes'));
     if(favorite.includes(id)) {
       return true;
     };
-    // favorite.forEach(movieId => {
-    //   if(movieId == id) {
-    //     return 'added to favorites';
-    //   } else {
-    //     return '';
-    //   }
-    // })
   }
 
   goToMovieDetails(id: number) {
