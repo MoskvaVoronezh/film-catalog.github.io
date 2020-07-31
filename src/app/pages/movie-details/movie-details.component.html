@@ -50,4 +50,29 @@
          {{movieInfo.overview}}
       </div>
    </div>
+   <div class="movie-slider">
+      <div class="movie-slider__title">Similar movies</div>
+      <swiper [config]="config">
+        <div class="movie-slider__item" *ngFor="let simular of movieSimulars">
+            <div class="movie-slider__poster">
+               <img class="movie-slider__poster-image" src="{{getFullImage(simular)}}">
+            </div>
+            <div class="movie-slider__name">{{simular.original_title}}</div>
+        </div> 
+
+      </swiper>
+   </div>
+
+   <div class="movie-slider">
+     <div class="movie-slider__title">Featured Movies</div>
+     <swiper [config]="config">
+       <div class="movie-slider__item" *ngFor="let recommendation of movieRecommendations">
+         <div class="movie-slider__poster">
+           <img class="movie-slider__poster-image" src="{{getFullImage(recommendation)}}">
+         </div>
+         <div class="movie-slider__name">{{recommendation.original_title}}</div>
+       </div>
+
+     </swiper>
+   </div>
 </div>

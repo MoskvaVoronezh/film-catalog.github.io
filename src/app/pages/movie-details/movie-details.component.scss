@@ -28,7 +28,7 @@
          width: 100%;
          padding: 30px 20px;
          color: #fff;
-         text-align: left;
+         text-align: center;
       }
    }
    &__poster {
@@ -56,6 +56,30 @@
       }
       &__right {
          color: #7E8D99;
+      }
+   }
+   &-slider {
+      &__title {
+         color: #fff;
+         font-size: 45px;
+         font-weight: bold;
+         margin-top: 50px;
+         margin-bottom: 45px;
+      }
+      &__poster {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         &-image {
+            max-width: 250px;
+            // max-height: 200px;
+         }
+      }
+      &__name {
+         text-align: center; 
+         color: #fff;
+         font-weight: bold;
+         margin-top: 10px;
       }
    }
 }

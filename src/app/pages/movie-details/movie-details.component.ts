@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { Location } from '@angular/common';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-movie-details',
@@ -10,11 +11,38 @@ import { Location } from '@angular/common';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute,
-    private movieService: MovieService,
-    private location: Location
-  ) { }
+  public config: SwiperConfigInterface = {
+    direction: 'horizontal',
+    slidesPerView: 3,
+    speed: 400,
+    spaceBetween: 30,
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 10
+      },
+      // when window width is >= 480px
+      900: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      },
+      // when window width is >= 640px
+      1200: {
+        slidesPerView: 4,
+        spaceBetween: 10
+      },
+
+      1500: {
+        slidesPerView: 5,
+        spaceBetween: 10
+      }
+    }
+  }
 
   public movieId: number;
   public movieInfo: any;
@@ -23,6 +51,12 @@ export class MovieDetailsComponent implements OnInit {
   public imageUrl: string;
   public genres: string = '';
   public countries: string = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private movieService: MovieService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     this.movieId = +this.route.snapshot.paramMap.get('id');
@@ -48,19 +82,23 @@ export class MovieDetailsComponent implements OnInit {
 
     //получение рекомендации
     this.movieService.getMoviesRecommendations(this.movieId).subscribe(recommendations => {
-      this.movieRecommendations = recommendations;
+      this.movieRecommendations = recommendations.results;
       console.log(this.movieRecommendations);
     });
 
     //получение похожих фильмов
     this.movieService.getMoviesSimular(this.movieId).subscribe(simulars => {
-      this.movieSimulars = simulars;
+      this.movieSimulars = simulars.results;
       console.log(this.movieSimulars);
     })
   }
   
   public back() {
     this.location.back();
+  }
+
+  getFullImage(img) {
+    return `https://image.tmdb.org/t/p/w500/${img.poster_path}`;
   }
 
 }
