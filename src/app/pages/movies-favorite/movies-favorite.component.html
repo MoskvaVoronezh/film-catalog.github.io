@@ -5,4 +5,11 @@
     </div>
   </div>
 </header>
-<div class="movie-details">
+<div class="content">
+  <ul class="favorite-list">
+    <li class="favorite-list__item" *ngFor="let movie of movies">
+      <div class="name">{{ movie.title }}</div>
+      <button class="remove" (click)="deleteMovie(movie.id)">remove</button>
+    </li>
+  </ul>
+</div>

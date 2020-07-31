@@ -3,3 +3,35 @@
       padding: 20px 30px;
   }
 }
+
+.content {
+  min-height: calc(100vh - 110px);
+}
+
+
+.favorite {
+  &-list {
+    display: flex;
+    flex-direction: column;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #7E8D99;
+      padding: 20px 30px;
+      .name {
+        margin-right: 20px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .remove {
+        background-color: #331A11;
+        border: 1px solid #fff;
+        padding: 10px;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+}
