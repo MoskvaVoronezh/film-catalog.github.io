@@ -12,14 +12,22 @@
          <img [src]="imageUrl" class="movie__poster-img">
       </div>
       <div class="movie-info">
-          <div class="movie__title">{{movieInfo.title}}</div>
+         <div class="movie__title">{{movieInfo.original_title}}</div>
          <div class="movie-info__item">
            <div class="movie-info__left">Release date:</div>
            <div class="movie-info__right"> {{movieInfo.release_date}} </div>
          </div>
+          <div class="movie-info__item">
+            <div class="movie-info__left">Countries:</div>
+            <div class="movie-info__right">{{countries}}</div>
+          </div>
          <div class="movie-info__item">
            <div class="movie-info__left">genre:</div>
            <div class="movie-info__right">{{genres}}</div>
+         </div>
+         <div class="movie-info__item">
+           <div class="movie-info__left">Language:</div>
+           <div class="movie-info__right">{{movieInfo.original_language}}</div>
          </div>
          <div class="movie-info__item">
            <div class="movie-info__left">Raiting:</div>
@@ -33,18 +41,11 @@
            <div class="movie-info__left">Duration</div>
            <div class="movie-info__right">{{movieInfo.runtime}} min</div>
          </div>
-         <div class="movie-info__item">
-           <div class="movie-info__left">Countries:</div>
-           <div class="movie-info__right">{{countries}}</div>
-         </div>
-         <div class="movie-info__item">
-           <div class="movie-info__left">ЖАНР:</div>
-           <div class="movie-info__right">фэнтези, приключения</div>
-         </div>
+        
          
       </div>
    </div>
-   <div class="movie-wrap">
+   <div class="movie-wrap movie-descr">
       <div class="movie-wrap__description">
          {{movieInfo.overview}}
       </div>
