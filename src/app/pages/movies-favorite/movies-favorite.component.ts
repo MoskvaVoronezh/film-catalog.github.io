@@ -33,10 +33,13 @@ export class MoviesFavoriteComponent implements OnInit {
 
   deleteMovie(id) {
     let storage = JSON.parse(localStorage.getItem('likes'));
-    const index = storage.findIndex(n => n.id == id);
-    storage.splice(index, 1);
-    localStorage.setItem('likes', JSON.stringify(storage));
-    window.location.reload();
+
+    const index = storage.indexOf(id);
+    if (index > -1) {
+      storage.splice(index, 1);
+      localStorage.setItem('likes', JSON.stringify(storage));
+      window.location.reload();
+    }
 
   }
 }
