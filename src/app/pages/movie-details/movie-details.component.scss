@@ -26,6 +26,9 @@
       align-items: center;
       justify-content: center;
       background-color: #1D2226;
+      @media screen and (max-width: 1024px) {
+         flex-direction: column;   
+      }
       margin: 0 auto;
       &__description {
          width: 100%;

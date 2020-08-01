@@ -129,9 +129,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   getFavorite(id) {
     let local = localStorage.getItem('likes');
-    console.log(local);
     let favorite;
-    console.log(favorite);
     if (local !== null && local !== undefined) {
       favorite = JSON.parse(localStorage.getItem('likes'));
     }

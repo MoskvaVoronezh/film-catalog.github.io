@@ -18,7 +18,6 @@ export class MoviesFavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.moviesIds = JSON.parse(localStorage.getItem('likes'));
-    console.log(this.moviesIds);
 
     this.moviesIds.forEach(id => {
       this.movieService.getMovie(id).subscribe(data => {
