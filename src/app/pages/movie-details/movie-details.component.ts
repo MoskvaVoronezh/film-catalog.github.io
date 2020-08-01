@@ -125,6 +125,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.isFavorite = true;
     let likes = JSON.parse(localStorage.getItem('likes'));
 
+    if(likes.includes(id)) {
+      return;
+    }
+
     if(likes === null) {
       localStorage.setItem('likes', JSON.stringify([id]));
     } else {
