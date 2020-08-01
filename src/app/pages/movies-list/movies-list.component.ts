@@ -134,15 +134,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       favorite = JSON.parse(localStorage.getItem('likes'));
     }
     
-    
-      if(favorite !== null && favorite !== undefined) {
-        if (favorite.includes(id)) {
-          return true;
-        } else {
-          return false;
-        }
+    if(favorite !== null && favorite !== undefined) {
+      if(favorite.some(o => o === id)) {
+        return true;
+      } else {
+        return false;
       }
-      
+    }   
   }
 
   goToMovieDetails(id: number) {

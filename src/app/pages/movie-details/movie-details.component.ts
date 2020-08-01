@@ -126,7 +126,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     let likes = JSON.parse(localStorage.getItem('likes'));
 
     if(likes !== null) {
-      if (likes.includes(id)) {
+      if(likes.some(o => o == id)) {
         return;
       }
     }
